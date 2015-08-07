@@ -1,0 +1,50 @@
+body {
+  font-family: Arial, sans-serif;
+}
+
+@media print {
+    div.nav {
+        display: none;
+    }
+}
+
+table {
+    font-size: 13px;
+}
+
+table {
+    border-collapse: collapse;
+    text-align: left;
+    margin-bottom: 30px;
+}
+
+table * {
+    border: 1px solid black;
+    padding: 1px 4px 1px 4px;
+}
+
+
+table.Kopf th:after{
+    content: ":"
+}
+
+table.Kopf td.unit_tage:after {
+    content: " Tage"
+}
+
+table.Liste th {
+   text-transform: uppercase;
+}
+
+table.Liste thead {
+   border-bottom: 4px double black;
+}
+
+table.Liste tbody td:first:after {
+    content: "."
+}
+
+table.Fuss td+td:after,
+table.Fuss th+th:after {
+    content: " h"
+}
