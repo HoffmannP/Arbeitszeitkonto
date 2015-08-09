@@ -1,10 +1,17 @@
 $(main);
 
 function main() {
-    $('div.nav button#forw').click(monat.bind(this, +1));
-    $('div.nav button#back').click(monat.bind(this, -1));
-    $('div.nav button#year').click(year);
-    $('div.nav button#add').click(add);
+    Mousetrap.bind('left', monat.bind(this, -1));
+    Mousetrap.bind('right', monat.bind(this, +1));
+    Mousetrap.bind('ctrl+up', year);
+    Mousetrap.bind('+', add);
+    Mousetrap.bind('p', css);
+
+    $('.nav button#forw').click(monat.bind(this, +1));
+    $('.nav button#back').click(monat.bind(this, -1));
+    $('.nav button#year').click(year);
+    $('.nav button#add').click(add);
+    $('.nav button#css').click(css);
 }
 
 function monat(direction) {
@@ -37,4 +44,13 @@ function year() {
 
 function add() {
     window.location = "neuerArbeitstag.php";
+}
+
+function css() {
+    $('.noPrint').css(
+        'display',
+        $('.noPrint').css('display') == 'inline' ?
+            'none' :
+            'inline'
+    );
 }

@@ -2,8 +2,16 @@ body {
   font-family: Arial, sans-serif;
 }
 
+em {
+    font-style: normal;
+    font-weight: bold;
+}
+
 @media print {
-    div.nav {
+    body {
+          padding-left: 4em;
+    }
+    .noPrint {
         display: none;
     }
 }
@@ -18,17 +26,16 @@ table {
     margin-bottom: 30px;
 }
 
-table * {
+table th, table  td {
     border: 1px solid black;
     padding: 1px 4px 1px 4px;
 }
-
 
 table.Kopf th:after{
     content: ":"
 }
 
-table.Kopf td.unit_tage:after {
+.unit_tage:after {
     content: " Tage"
 }
 
@@ -44,7 +51,19 @@ table.Liste tbody td:first:after {
     content: "."
 }
 
-table.Fuss td+td:after,
-table.Fuss th+th:after {
+table.Fuss th, table.Fuss td {
+    border: none;
+}
+
+.right {
+    text-align: right;
+}
+
+.unit_stunden:after {
     content: " h"
+}
+
+.noPrint {
+    color: blue;
+    font-style: italic;
 }

@@ -24,10 +24,10 @@ class Status {
             self::KRANK => 'Krank',
             self::URLAUB => 'Urlaub',
 
-            self::WOCHENENDE => '',
+            self::WOCHENENDE => '<span class="noPrint">Wochenende</span>',
             self::FEIERTAG => 'Feiertag',
-            self::FREI => 'Frei',
-            self::FREIGESTELLT => 'Freigestellt',
+            self::FREI => '<span class="noPrint">Frei</span>',
+            self::FREIGESTELLT => 'Weiterbildung (bezahlte Freistellung)',
             self::KIND_KRANK => 'Kind krank',
 
             self::UEBERSTUNDEN_FREI => 'Überstundenabbau',

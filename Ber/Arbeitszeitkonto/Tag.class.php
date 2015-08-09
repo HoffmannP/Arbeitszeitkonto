@@ -21,6 +21,8 @@ class Tag {
         $this->ende = $ende;
         $this->MITTAGSPAUSE = new \DateInterval(self::MITTAGSPAUSE);
         $this->STUNDEN_SOLL = new \DateInterval(self::STUNDEN_SOLL);
+        $this->STUNDEN_UEBER = new \DateInterval(self::STUNDEN_SOLL);
+        $this->STUNDEN_UEBER->invert = 1;
         $this->NULL_INTERVALL = new \DateInterval('PT0M');
     }
 
@@ -34,11 +36,13 @@ class Tag {
     }
 
     private function calc_stunden_ueber() {
-        $tmp = $this->beginn->add($this->STUNDEN_SOLL);
-        if (!$this->status->ist_ueberstunden_frei) {
-            $tmp = $tmp->add($this->MITTAGSPAUSE);
+        if ($this->status->ist_ueberstunden_frei) {
+            return $this->STUNDEN_UEBER;
         }
-        return $tmp->diff($this->ende);
+        return $this->beginn
+            ->add($this->STUNDEN_SOLL)
+            ->add($this->MITTAGSPAUSE)
+            ->diff($this->ende);
     }
 
     public function stunden($modus) {
@@ -89,12 +93,15 @@ class Tag {
                 return null;
             case 'status':
                 return $this->status->__toString();
+            case 'morgen':
+                return $this->beginn->setTime(0, 0)->modify('next day');
             default:
                 throw new \Exception('Nicht unterstützte GET-Variable "' . $name .'" in Klasse "' . __CLASS__ . '".');
         }
     }
 
     public function __toString() {
-        return $this->beginn->format("j");
+        return $this->beginn->format("j") .
+            "<span class='noPrint'> " . strftime("%a", $this->beginn->getTimestamp()) . "</span>";
     }
 }

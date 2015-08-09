@@ -73,8 +73,8 @@ EOT;
         $tage = array();
         foreach ($periode as $datum) {
             $tmp_tag = $this->tag($datum);
-            if ($tmp_tag && !$tmp_tag->is(Status::WOCHENENDE)) {
-            $tage[] = $tmp_tag;
+            if ($tmp_tag) {
+                $tage[] = $tmp_tag;
             }
         }
         return new Periode($tage);
@@ -86,7 +86,11 @@ EOT;
         $columns = $this->getDay->fetch(\PDO::FETCH_ASSOC);
 
         if ($columns === false) {
-            return null;
+            $columns = array(
+                'status' => $date->format('N') >= 6 ? Status::WOCHENENDE : Status::FREI,
+                'beginn' => $date->format('Y-m-d'),
+                'ende' => $date->format('Y-m-d')
+            );
         }
 
         return new Tag(

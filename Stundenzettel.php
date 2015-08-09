@@ -2,9 +2,12 @@
 
 namespace Ber\Arbeitszeitkonto;
 
+setlocale(LC_ALL , 'de_DE.UTF8');
+
 spl_autoload_register(function ($class_name) {
     require_once __DIR__ . '/' . str_replace('\\', '/', $class_name) . '.class.php';
 });
+
 
 $sqliteConnection = 'sqlite:Arbeitszeit.sqlite';
 $Stundenzettel = new Arbeitszeitkonto($sqliteConnection);
