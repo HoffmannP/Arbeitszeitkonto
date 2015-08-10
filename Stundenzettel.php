@@ -8,9 +8,7 @@ spl_autoload_register(function ($class_name) {
     require_once __DIR__ . '/' . str_replace('\\', '/', $class_name) . '.class.php';
 });
 
-
-$sqliteConnection = 'sqlite:Arbeitszeit.sqlite';
-$Stundenzettel = new Arbeitszeitkonto($sqliteConnection);
+$Stundenzettel = new Arbeitszeitkonto($config['dsn']);
 
 $monat = array_key_exists('monat', $_GET) ? $_GET['monat'] : (new \DateTime())->format('m');
 $jahr = array_key_exists('jahr', $_GET) ? $_GET['jahr'] : (new \DateTime())->format('y');

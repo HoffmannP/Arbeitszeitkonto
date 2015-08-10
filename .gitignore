@@ -1,2 +1,5 @@
 *.sublime-*
 *.sqlite
+*.xls
+.gitignore
+config.yml

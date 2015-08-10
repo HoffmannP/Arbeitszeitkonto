@@ -25,11 +25,11 @@
             <tbody>
                 <tr>
                     <th>Einrichtung</th>
-                    <td><em>Tagesklink</em></td>
+                    <td><em><?= $config['arbeitsplatz'] ?></em></td>
                 </tr>
                 <tr>
                     <th>Name</th>
-                    <td><em>Katja Lehr</em></td>
+                    <td><em><?= $config['name'] ?></em></td>
                 </tr>
                 <tr>
                     <th>Monat</th>
